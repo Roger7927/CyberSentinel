@@ -1,6 +1,7 @@
 // (c) 2026 Guillermo Roger Hernandez Chandia - ADS
 
 using Spectre.Console;
+using System;
 using System.Threading;
 
 namespace CyberSentinel
@@ -9,45 +10,44 @@ namespace CyberSentinel
     {
         static void Main(string[] args)
         {
-            // Criando o esqueleto da interface (Layout)
+            AnsiConsole.Clear();
+            double angle = 0;
+
+            // Criamos o layout inicial para o cockpit
             var layout = new Layout("Root")
-                .SplitRows(
-                    new Layout("Header").Size(5),
-                    new Layout("Body").SplitColumns(
-                        new Layout("Sensors"),
-                        new Layout("MainView")
-                    )
+                .SplitColumns(
+                    new Layout("Radar"),
+                    new Layout("Logs")
                 );
 
-            // 1. O Cabeçalho (Título Futurista)
-            layout["Header"].Update(
-                new Panel(Align.Center(new FigletText("CYBER SENTINEL").Color(Color.Aqua)))
-                    .Border(BoxBorder.None));
-
-            // 2. Sensores Laterais
-            layout["Sensors"].Update(
-                new Panel(new Rows(
-                    new Text("FIREWALL: [ACTIVE]", new Style(Color.Lime)),
-                    new Text("ENCRYPTION: [256-BIT]", new Style(Color.Blue)),
-                    new Text("SCANNER: [ON]", new Style(Color.Yellow))
-                )).Header("SYSTEM CORE").Border(BoxBorder.Double));
-
-            // 3. Área Principal (A Mágica acontece aqui)
             AnsiConsole.Live(layout).Start(ctx =>
             {
-                var table = new Table().Centered().BorderColor(Color.Grey);
-                table.AddColumn("TARGET");
-                table.AddColumn("STATUS");
-                
-                layout["MainView"].Update(new Panel(table).Header("THREAT SCANNER").BorderColor(Color.Aqua));
-                ctx.Refresh();
-
-                string[] alvos = { "192.168.1.105", "Port 8080", "Mainframe DB", "Auth Gateway" };
-                foreach (var alvo in alvos)
+                while (true)
                 {
-                    Thread.Sleep(1000);
-                    table.AddRow(alvo, "[bold green]SECURE[/]");
-                    ctx.Refresh();
+                    // 1. Criando o Canvas do Zero (A Caixa de Desenho)
+                    var canvas = new Canvas(40, 40);
+                    int centerX = 20, centerY = 20, radius = 15;
+
+                    // 2. Desenho Geométrico (Borda e Varredura)
+                    for (int i = 0; i < 360; i += 2)
+                    {
+                        double rad = i * Math.PI / 180;
+                        canvas.SetPixel(centerX + (int)(radius * Math.Cos(rad)), centerY + (int)(radius * Math.Sin(rad)), Color.DeepSkyBlue1);
+                    }
+
+                    double sweepRad = angle * Math.PI / 180;
+                    for (int r = 0; r < radius; r++)
+                    {
+                        canvas.SetPixel(centerX + (int)(r * Math.Cos(sweepRad)), centerY + (int)(r * Math.Sin(sweepRad)), Color.Lime);
+                    }
+
+                    // 3. Atualizando os Painéis (Lógica ADS de Refresh)
+                    layout["Radar"].Update(new Panel(canvas).Header("[bold aqua]🛰️ LIVE RADAR[/]").BorderColor(Color.Grey));
+                    layout["Logs"].Update(new Panel(new Text($"\n[INFO] SCANNING ANGLE: {angle}°\n[ALERT] TARGETS DETECTED: 2", new Style(Color.Lime))).Header("SYSTEM LOGS"));
+
+                    angle = (angle + 15) % 360;
+                    ctx.Refresh(); // O comando de mestre que não falha
+                    Thread.Sleep(50);
                 }
             });
         }

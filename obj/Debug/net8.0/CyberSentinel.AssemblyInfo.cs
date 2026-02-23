@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CyberSentinel")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e7cc720d4b72bfb1ebf8320fa2c835d7cc0a9c21")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d64bea8aee6d106ea39409e216956db3b2e15092")]
 [assembly: System.Reflection.AssemblyProductAttribute("CyberSentinel")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CyberSentinel")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
