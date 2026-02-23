@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "nm17rtGb9u5olmr09I6TOJjzClXSkLaI4LOAtvHf7q9KIoxCgGfGquqcZd1wO3YhcDImhcxQNgNo0LZS3uFgzg==",
+  "success": true,
+  "projectFilePath": "/home/guillermo79/CyberSentinel/CyberSentinel.csproj",
+  "expectedPackageFiles": [
+    "/home/guillermo79/.nuget/packages/spectre.console/0.54.0/spectre.console.0.54.0.nupkg.sha512"
+  ],
+  "logs": []
+}
