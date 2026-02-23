@@ -1,8 +1,7 @@
 // (c) 2026 Guillermo Roger Hernandez Chandia - ADS
 
-using System;
-using System.Threading;
 using Spectre.Console;
+using System.Threading;
 
 namespace CyberSentinel
 {
@@ -10,51 +9,47 @@ namespace CyberSentinel
     {
         static void Main(string[] args)
         {
-            // Título Impactante (Visual Futurista)
-            AnsiConsole.Write(
-                new FigletText("CYBER SENTINEL")
-                    .Centered()
-                    .Color(Color.Aqua));
+            // Criando o esqueleto da interface (Layout)
+            var layout = new Layout("Root")
+                .SplitRows(
+                    new Layout("Header").Size(5),
+                    new Layout("Body").SplitColumns(
+                        new Layout("Sensors"),
+                        new Layout("MainView")
+                    )
+                );
 
-            var panel = new Panel(new Text("SISTEMA DE MONITORAMENTO DE REDE ATIVO", new Style(Color.Lime)));
-            panel.Border = BoxBorder.Double;
-            AnsiConsole.Write(panel);
+            // 1. O Cabeçalho (Título Futurista)
+            layout["Header"].Update(
+                new Panel(Align.Center(new FigletText("CYBER SENTINEL").Color(Color.Aqua)))
+                    .Border(BoxBorder.None));
 
-            // Simulação de Carregamento de Módulos (UX Profissional)
-            AnsiConsole.Status()
-                .Start("Iniciando protocolos de defesa...", ctx => 
+            // 2. Sensores Laterais
+            layout["Sensors"].Update(
+                new Panel(new Rows(
+                    new Text("FIREWALL: [ACTIVE]", new Style(Color.Lime)),
+                    new Text("ENCRYPTION: [256-BIT]", new Style(Color.Blue)),
+                    new Text("SCANNER: [ON]", new Style(Color.Yellow))
+                )).Header("SYSTEM CORE").Border(BoxBorder.Double));
+
+            // 3. Área Principal (A Mágica acontece aqui)
+            AnsiConsole.Live(layout).Start(ctx =>
+            {
+                var table = new Table().Centered().BorderColor(Color.Grey);
+                table.AddColumn("TARGET");
+                table.AddColumn("STATUS");
+                
+                layout["MainView"].Update(new Panel(table).Header("THREAT SCANNER").BorderColor(Color.Aqua));
+                ctx.Refresh();
+
+                string[] alvos = { "192.168.1.105", "Port 8080", "Mainframe DB", "Auth Gateway" };
+                foreach (var alvo in alvos)
                 {
-                    ctx.Spinner(Spinner.Known.Dots);
-                    ctx.SpinnerStyle(Style.Parse("bold blue"));
-
-                    Thread.Sleep(2000);
-                    AnsiConsole.MarkupLine("[grey]LOG:[/] Módulos de Criptografia... [green]OK[/]");
                     Thread.Sleep(1000);
-                    AnsiConsole.MarkupLine("[grey]LOG:[/] Scanner de Perímetro... [green]OK[/]");
-                });
-
-            // Lógica de Varredura (O Coração do Sistema)
-            var table = new Table().Centered();
-            table.AddColumn("PROCESSO");
-            table.AddColumn("STATUS");
-            table.AddColumn("RISCO");
-
-            AnsiConsole.Live(table)
-                .Start(ctx =>
-                {
-                    string[] processos = { "Injeção de SQL", "Ataque Brute Force", "Port Scan", "Phishing Link" };
-                    Random rnd = new Random();
-
-                    for (int i = 0; i < processos.Length; i++)
-                    {
-                        Thread.Sleep(1500);
-                        string risco = rnd.Next(1, 100) > 70 ? "[red]ALTO[/]" : "[yellow]BAIXO[/]";
-                        table.AddRow(processos[i], "[bold green]ANALISADO[/]", risco);
-                        ctx.Refresh();
-                    }
-                });
-
-            AnsiConsole.MarkupLine("\n[bold aqua]VARREDURA CONCLUÍDA. NENHUMA AMEAÇA CRÍTICA DETECTADA NO MOMENTO.[/]");
+                    table.AddRow(alvo, "[bold green]SECURE[/]");
+                    ctx.Refresh();
+                }
+            });
         }
     }
 }
