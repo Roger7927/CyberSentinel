@@ -1,3 +1,7 @@
+// Copyright: (c) 2026 - Guillermo Roger Hernandez Chandia.
+// Status: All Rights Reserved (Todos os Direitos Reservados).
+// Contexto: Projeto acadêmico de Análise e Desenvolvimento de Sistemas (ADS).
+// (c) 2026 Guillermo Roger Hernandez Chandia - ADS.
 // (c) 2026 Guillermo Roger Hernandez Chandia - ADS
 
 using Spectre.Console;
