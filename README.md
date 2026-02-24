@@ -1,23 +1,35 @@
-# 🛡️ Cyber Sentinel v8.0 - Terminal Defense System
+# 🛰️ Cyber Sentinel SOC v1.9 - Tactical Radar
 
-**Cyber Sentinel** é um simulador dinâmico de monitoramento de rede desenvolvido em **C#** para o ambiente **Linux (Ubuntu)**. O projeto foca em lógica de programação, manipulação de buffers de console e interatividade em tempo real.
-
-## 🚀 Tecnologias Utilizadas
-- **Linguagem:** C# (.NET 8.0)
-- **Interface:** Spectre.Console (TUI - Terminal User Interface)
-- **Ambiente:** Linux Ubuntu no Acer Aspire 5 (Ryzen 7)
-- **Conceitos:** Loops infinitos, Programação Orientada a Eventos e Persistência de Dados (Logs).
-
-## 🧠 Lógica de Funcionamento (Abstração ADS)
-O sistema utiliza uma metáfora de **"Bolinhas e Caixas"**:
-1. **As Caixas (Vetores/Arrays):** Representam os Nodes da rede carregados na Memória RAM.
-2. **As Bolinhas (Dados):** Representam o status de integridade sorteado via algoritmos de probabilidade (Random).
-3. **O Radar (Processamento):** Analisa o conteúdo de cada caixa e decide visualmente se o sistema entra em modo crítico ou nominal.
-
-## 🛠️ Como Executar
-1. Certifique-se de ter o .NET SDK instalado.
-2. Instale as dependências: `dotnet add package Spectre.Console`
-3. Execute o motor: `dotnet run`
+## 📜 Descrição do Projeto
+Interface tática de monitoramento orbital desenvolvida para simular telemetria de cibersegurança em tempo real. Este sistema processa dados de varredura utilizando lógica matemática avançada para detecção de pacotes e ameaças em rede.
 
 ---
-*Projeto acadêmico desenvolvido por Guillermo Roger Hernandez Chandia para portfólio de ADS.*
+
+## 🛠️ Especificações Técnicas (ADS)
+| Componente | Tecnologia | Função |
+| :--- | :--- | :--- |
+| **Linguagem** | Python 3.10+ | Engine de processamento. |
+| **Interface** | Streamlit | Dashboard tático (Front-end). |
+| **Lógica** | Trigonometria | Cálculos de Seno/Cosseno para varredura orbital. |
+| **Infra** | Cloud Hosting | Disponibilidade 24/7 via Streamlit Cloud. |
+
+---
+
+## 🎯 Funcionalidades Principais
+- **Scan Loop:** Varredura contínua de 360 graus sem travamentos.
+- **Operator Tracking:** Identificação em tempo real do desenvolvedor responsável.
+- **Security Logs:** Simulação de logs de auditoria de sistema.
+- **High Availability:** Link público ativo para visualização de portfólio.
+
+---
+
+## ⚖️ Propriedade Intelectual (Copyright)
+Este software e toda a sua documentação são protegidos por direitos autorais.
+**Copyright (c) 2026 - Guillermo Roger Hernandez Chandia.**
+Status: All Rights Reserved (Todos os Direitos Reservados).
+
+---
+
+## 🚀 Visualização Online
+O radar está ativo e pode ser visualizado em tempo real através do link abaixo:
+https://roger7927-cybersentinel-radar-sentinel-8z2j1a.streamlit.app/
